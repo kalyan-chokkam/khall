@@ -1,0 +1,25 @@
+<h2>list of tasks</h2>
+<ul class="tasks">
+  <li *ngFor="let task of tasks"
+    [class.selected]="task === selectedTask"
+    (click)="onSelect(task)">
+    <span class="badge">{{task.id}}</span> {{task.name}}
+  </li>
+</ul>
+<div>
+  <button (click)="addTask()">add new Task</button>
+</div>
+<div *ngIf='newTask'>
+  <label>task name</label>
+  <input type="text" #tName>
+  <label>description</label>
+  <input type="text" #tDesc>
+  <button (click)="save(tName.value,tDesc.value)">save task</button>
+  <button (click)="cancel()">cancel</button>
+</div>
+<div *ngIf="selectedTask">
+
+  <app-child-task [task]='selectedTask'></app-child-task>
+  
+
+</div>
